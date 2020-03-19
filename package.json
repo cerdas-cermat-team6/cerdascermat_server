@@ -17,7 +17,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "NODE_ENV=development nodemon index.js",
     "devwin": "SET NODE_ENV=development&& nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "migrate": "NODE_ENV=development sequelize db:migrate && sequelize db:seed:all",
+    "undo": "NODE_ENV=development sequelize db:migrate:undo:all"
   },
   "repository": {
     "type": "git",
