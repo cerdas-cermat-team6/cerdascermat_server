@@ -2,26 +2,24 @@ const env = process.env.NODE_ENV || 'development'
 if (env === 'development') {
   require('dotenv').config()
 }
-const cors = require('cors');
+const cors = require('cors')
 const express = require('express');
 const app = express();
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
-// const QuestionController = require('./controllers/QuestionController')
+const { Question } = require('./models')
 
-app.use(cors());
-// app.use(express.urlencoded({
-//   extended: false
-// }))
-// app.use(express.json())
-
-// app.get('/', (req, res) => res.send("Restricted area!"))
-// app.get('/questions', QuestionController.findAll)
+app.use(cors())
 
 io.on('connection', (socket) => {
-  socket.on('test masok', _ => {
-    socket.emit('masok')
-    console.log("user connected");
+  socket.on('fetchQuestions', _ => {
+    Question.findAll()
+      .then(data => {
+        socket.emit('questions', data)
+      })
+      .catch(err => {
+        console.log(err, '<<<<<')
+      })
   })
 })
 
