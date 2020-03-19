@@ -21,6 +21,9 @@ io.on('connection', (socket) => {
         console.log(err, '<<<<<')
       })
   })
+  socket.on('sendChat', payload => {
+    socket.emit('userChat', payload)
+  })
 })
 
 http.listen(process.env.PORT, _ => console.log(`You're listening to radio ${process.env.PORT}`))
