@@ -12,6 +12,7 @@ const { Question } = require('./models')
 app.use(cors())
 
 io.on('connection', (socket) => {
+  console.log('a user joined')
   socket.on('fetchQuestions', _ => {
     Question.findAll()
       .then(data => {
@@ -22,7 +23,7 @@ io.on('connection', (socket) => {
       })
   })
   socket.on('sendChat', payload => {
-    socket.emit('userChat', payload)
+    socket.broadcast.emit('userChat', payload)
   })
 })
 
