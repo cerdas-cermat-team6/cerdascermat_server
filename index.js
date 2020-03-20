@@ -8,6 +8,7 @@ const app = express();
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 const { Question } = require('./models')
+const PORT = 3000
 
 app.use(cors())
 
@@ -75,4 +76,4 @@ io.on('connection', (socket) => {
     })
 })
 
-http.listen(3000, _ => console.log(`You're listening to radio 3000`))
+http.listen(PORT, _ => console.log(`You're listening to radio ${PORT}`))
