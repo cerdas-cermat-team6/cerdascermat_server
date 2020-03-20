@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "postgres",
-    "password": "postgres",
+    "password": "m3r@p1",
     "database": "db_cerdascermat_development",
     "host": "127.0.0.1",
     "dialect": "postgres"
