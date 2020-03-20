@@ -52,9 +52,9 @@ io.on('connection', (socket) => {
 setInterval(() => {
   const idRand = Math.floor(Math.random() * questionContainer.length)
   const payload = {
-    id: questionContainer[idRand].dataValues.id,
-    message: questionContainer[idRand].dataValues.question,
-    answers: questionContainer[idRand].dataValues.answers.split(',')
+    id: questionContainer[idRand].id,
+    message: questionContainer[idRand].question,
+    answers: questionContainer[idRand].answers.split(',')
   }
   console.log(payload)
   io.emit('feedQuestion', payload)
