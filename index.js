@@ -50,14 +50,16 @@ io.on('connection', (socket) => {
     })
 })
 setInterval(() => {
-  const idRand = Math.floor(Math.random() * questionContainer.length)
-  const payload = {
-    id: questionContainer[idRand].id,
-    message: questionContainer[idRand].question,
-    answers: questionContainer[idRand].answers.split(',')
+  if (questionContainer.length > 0) {
+    const idRand = Math.floor(Math.random() * questionContainer.length)
+    const payload = {
+      id: questionContainer[idRand].id,
+      message: questionContainer[idRand].question,
+      answers: questionContainer[idRand].answers.split(',')
+    }
+    console.log(payload)
+    io.emit('feedQuestion', payload)
   }
-  console.log(payload)
-  io.emit('feedQuestion', payload)
 }, 15000);
 
 http.listen(process.env.PORT, _ => console.log(`You're listening to radio ${process.env.PORT}`))
