@@ -1,0 +1,34 @@
+{
+  "name": "cerdascermat_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "pg": "^7.18.2",
+    "sequelize": "^5.21.5",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "NODE_ENV=development nodemon index.js",
+    "devwin": "SET NODE_ENV=development&& nodemon index.js",
+    "start": "node index.js",
+    "migrate": "NODE_ENV=development sequelize db:migrate && sequelize db:seed:all",
+    "undo": "NODE_ENV=development sequelize db:migrate:undo:all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cerdas-cermat-team6/cerdascermat_server.git"
+  },
+  "author": "Andreas Anggara, Jatmika Teja, Lukman Bayhaqi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cerdas-cermat-team6/cerdascermat_server/issues"
+  },
+  "homepage": "https://github.com/cerdas-cermat-team6/cerdascermat_server#readme"
+}
