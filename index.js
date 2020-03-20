@@ -75,4 +75,4 @@ io.on('connection', (socket) => {
     })
 })
 
-http.listen(process.env.PORT, _ => console.log(`You're listening to radio ${process.env.PORT}`))
+http.listen(3000, _ => console.log(`You're listening to radio 3000`))
