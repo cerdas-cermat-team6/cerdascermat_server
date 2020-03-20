@@ -15,7 +15,9 @@ app.use(cors())
 
 io.on('connection', (socket) => {
   socket.on('fetchQuestions', _ => {
-    Question.findAll()
+    Question.findAll({
+      limit: 5
+    })
       .then(data => {
         socket.emit('questions', data)
       })
@@ -30,36 +32,36 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('addUserPoint', payload)
   })
 
-  console.log('a user joined')
-  console.log('emit init')
-  Question.findAll()
-    .then(result => {
-      questionContainer = result;
+//   console.log('a user joined')
+//   console.log('emit init')
+//   Question.findAll()
+//     .then(result => {
+//       questionContainer = result;
       
-      const idRand = Math.floor(Math.random() * questionContainer.length)
-      const payload = {
-        id: questionContainer[idRand].dataValues.id,
-        message: questionContainer[idRand].dataValues.question,
-        answers: questionContainer[idRand].dataValues.answers.split(',')
-      }
-      console.log(payload)
-      socket.emit('feedQuestion', payload)
-    })
-    .catch(err => {
-      console.log(err)
-    })
+//       const idRand = Math.floor(Math.random() * questionContainer.length)
+//       const payload = {
+//         id: questionContainer[idRand].dataValues.id,
+//         message: questionContainer[idRand].dataValues.question,
+//         answers: questionContainer[idRand].dataValues.answers.split(',')
+//       }
+//       console.log(payload)
+//       socket.emit('feedQuestion', payload)
+//     })
+//     .catch(err => {
+//       console.log(err)
+//     })
 })
-setInterval(() => {
-  if (questionContainer.length > 0) {
-    const idRand = Math.floor(Math.random() * questionContainer.length)
-    const payload = {
-      id: questionContainer[idRand].id,
-      message: questionContainer[idRand].question,
-      answers: questionContainer[idRand].answers.split(',')
-    }
-    console.log(payload)
-    io.emit('feedQuestion', payload)
-  }
-}, 15000);
+// setInterval(() => {
+//   if (questionContainer.length > 0) {
+//     const idRand = Math.floor(Math.random() * questionContainer.length)
+//     const payload = {
+//       id: questionContainer[idRand].id,
+//       message: questionContainer[idRand].question,
+//       answers: questionContainer[idRand].answers.split(',')
+//     }
+//     console.log(payload)
+//     io.emit('feedQuestion', payload)
+//   }
+// }, 15000);
 
 http.listen(process.env.PORT, _ => console.log(`You're listening to radio ${process.env.PORT}`))
