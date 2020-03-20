@@ -8,7 +8,7 @@ const app = express();
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 const { Question } = require('./models')
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 
 app.use(cors())
 
